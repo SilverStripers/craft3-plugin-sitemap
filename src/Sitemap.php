@@ -132,7 +132,9 @@ class Sitemap extends Plugin
             UrlManager::class,
             UrlManager::EVENT_REGISTER_SITE_URL_RULES,
             function(RegisterUrlRulesEvent $event) {
-                $event->rules['sitemap.xml'] = 'sitemap/sitemap/index';
+                if (empty($event->rules['sitemap.xml'])) {
+                    $event->rules['sitemap.xml'] = 'sitemap/sitemap/index';
+                }
             }
         );
 
